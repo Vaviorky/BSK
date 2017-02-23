@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSK", "BSK\BSK.csproj", "{1814C8BE-7AEF-47D9-ABE0-BB778B9DB7E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List1", "List1\List1.csproj", "{4382A994-585A-4BE5-BB09-4BBE1E0F7500}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1814C8BE-7AEF-47D9-ABE0-BB778B9DB7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1814C8BE-7AEF-47D9-ABE0-BB778B9DB7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1814C8BE-7AEF-47D9-ABE0-BB778B9DB7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1814C8BE-7AEF-47D9-ABE0-BB778B9DB7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4382A994-585A-4BE5-BB09-4BBE1E0F7500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4382A994-585A-4BE5-BB09-4BBE1E0F7500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4382A994-585A-4BE5-BB09-4BBE1E0F7500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4382A994-585A-4BE5-BB09-4BBE1E0F7500}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
