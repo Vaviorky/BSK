@@ -10,12 +10,17 @@ namespace List1.Excercises
     {
         public static void Encrypt()
         {
-
+            
         }
 
         public static void Decrypt()
         {
 
+        }
+
+        private static string GetAlphabet()
+        {
+            return "ABCDEFGHIJKLMNOPRSTUVWXYZ";
         }
     }
 }

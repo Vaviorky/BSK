@@ -13,7 +13,7 @@ namespace List1.Excercises
             Console.Clear();
             Console.WriteLine("Bezpieczeństwo Sieci Komputerowych");
             Console.WriteLine("");
-            Console.WriteLine("Sujeta Adam");
+            Console.WriteLine("Olbryś Krystian");
             Console.WriteLine("Wawiórka Daniel");
             Console.WriteLine("");
             Console.WriteLine("Lista 1");
