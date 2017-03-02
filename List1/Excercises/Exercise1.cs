@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static System.Int32;
 
 namespace List1.Excercises
 {
@@ -17,7 +18,7 @@ namespace List1.Excercises
             Console.Write("Podaj klucz (wart. liczbowa): ");
             var key = Console.ReadLine();
             int keynumber;
-            var isNumeric = int.TryParse(key, out keynumber);
+            var isNumeric = TryParse(key, out keynumber);
             if (isNumeric)
             {
                 var railfence = new List<string>();
@@ -58,11 +59,55 @@ namespace List1.Excercises
             Console.WriteLine();
 
             Console.Write("Podaj ciąg znaków do deszyfrowania: ");
-            var plaintext = Console.ReadLine();
+            var cipherText = Console.ReadLine();
             Console.Write("Podaj klucz (wart. liczbowa): ");
             var key = Console.ReadLine();
+            if (key != null)
+            {
+                var keyint = Parse(key);
+                if (cipherText != null)
+                {
+                    var cipherLength = cipherText.Length;
+                    var railfence = new List<List<int>>();
 
+                    for (int i = 0; i < keyint; i++)
+                    {
+                        railfence.Add(new List<int>());
+                    }
 
+                    int number = 0, increment = 1;
+
+                    for (int i = 0; i < cipherLength; i++)
+                    {
+                        if (number + increment == keyint)
+                        {
+                            increment = -1;
+                        }
+                        else if (number + increment == -1)
+                        {
+                            increment = 1;
+                        }
+                        railfence[number].Add(i);
+                        number += increment;
+                    }
+
+                    var counter = 0;
+
+                    var output = new char[cipherLength];
+
+                    for (var i = 0; i < keyint; i++)
+                    {
+                        for (var j = 0; j < railfence[i].Count; j++)
+                        {
+                            output[railfence[i][j]] = cipherText[counter];
+                            counter++;
+                        }
+                    }
+                    var outp = new string(output);
+                    Console.WriteLine("Ciąg odszyfrowany: " + outp);
+                }
+            }
+            Console.ReadKey();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace List1.Excercises
         {
             Console.Clear();
             ConsoleOutput.PutInitText();
-            Console.WriteLine("Zadanie 1 - Rail fence");
+            Console.WriteLine("Zadanie 1 - Przestawienia macierzowe");
             Console.WriteLine();
 
             Console.Write("Podaj ciąg znaków do szyfrowania: ");
