@@ -125,7 +125,6 @@ namespace List1.Excercises
             for (int i = 0; i < word.Length; i++)
             {
                 if (keyCounter == key.Length) keyCounter = 0;
-                //Console.Write(getCharEncodeCaesar(word[i],key[keyCounter++],Alfabet));
                 wordEncoded += getCharEncodeCaesar(word[i], key[keyCounter++], Alfabet);
             }
             Console.WriteLine("Ciąg zaszyfrowany: " + wordEncoded);

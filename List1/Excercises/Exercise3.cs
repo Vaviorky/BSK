@@ -156,18 +156,145 @@ namespace List1.Excercises
         {
             Console.Clear();
             ConsoleOutput.PutInitText();
-            Console.WriteLine("Zadanie 5 - Vigenere");
+            Console.WriteLine("Zadanie 3 - 2b");
             Console.WriteLine();
 
             Console.Write("Podaj ciąg znaków do szyfrowania: ");
             var plaintext = Console.ReadLine();
             Console.Write("Podaj klucz: ");
             var keyInput = Console.ReadLine();
+
+
+
+            //trash
+            List<int> key = new List<int>();
+
+            string word = plaintext;
+            string wordKey = keyInput;
+            //wordKey = "AMD";
+            //word = "CONVENIENCE";
+            string wordEncrypted = "";
+
+            List<char> alpbabetList = new List<char>();
+
+            for (int i = 65; i < 91; i++)
+            {
+                alpbabetList.Add((char)i);
+            }
+
+            int[] keyTable = new int[wordKey.Length];
+
+            int keyTableCounter = 1;
+            foreach (char c in alpbabetList)
+            {
+                for (int p = 0; p < wordKey.Length; p++)
+                {
+                    if (wordKey[p] == c)
+                    {
+                        keyTable[p] = keyTableCounter;
+                        keyTableCounter++;
+                    }
+                }
+            }
+
+            key.Clear();
+
+            foreach (int x in keyTable)
+            {
+                key.Add(x);
+            }
+
+            key = getKeyInversed(key);
+            int row = (int)Math.Ceiling((float)word.Length / key.Count);
+            int col = key.Count;
+            int counter;
+
+            int[,] matrixHelper = new int[row, col];
+            char[,] matrixValues = new char[row, col];
+
+
+            
+
+            initHelperTable(matrixHelper, word.Length);
+
+            initValuesTable(matrixValues);
+
+           
+            populateValuesTable(matrixHelper, matrixValues, word);
+
+
+            counter = 0;
+            wordEncrypted = getEncrypted(matrixHelper, matrixValues, key);
+
+            Console.WriteLine(wordEncrypted);
+            Console.ReadKey();
         }
 
         public static void Decrypt()
         {
+            Console.Clear();
+            ConsoleOutput.PutInitText();
+            Console.WriteLine("Zadanie 3 - 2b");
+            Console.WriteLine();
 
+            Console.Write("Podaj ciąg znaków do odszyfrowania: ");
+            var plaintext = Console.ReadLine();
+            Console.Write("Podaj klucz: ");
+            var keyInput = Console.ReadLine();
+
+
+
+            // DECRYPT
+            List<int> key = new List<int>();
+            string wordKey = keyInput;
+            string wordEncrypted = plaintext;
+
+            int[] keyTable = new int[wordKey.Length];
+
+            List<char> alpbabetList = new List<char>();
+
+            for (int i = 65; i < 91; i++)
+            {
+                alpbabetList.Add((char)i);
+            }
+
+            int keyTableCounter = 1;
+            foreach (char c in alpbabetList)
+            {
+                for (int p = 0; p < wordKey.Length; p++)
+                {
+                    if (wordKey[p] == c)
+                    {
+                        keyTable[p] = keyTableCounter;
+                        keyTableCounter++;
+                    }
+                }
+            }
+
+            key.Clear();
+
+            foreach (int x in keyTable)
+            {
+                key.Add(x);
+            }
+
+            key = getKeyInversed(key);
+
+            int row = (int)Math.Ceiling((float)wordEncrypted.Length / key.Count);
+            int col = key.Count;
+            int[,] matrixHelper = new int[row, col];
+            char[,] matrixValues = new char[row, col];
+
+            initHelperTable(matrixHelper, wordEncrypted.Length);
+
+            initValuesTable(matrixValues);
+
+            string wordDecryptedFromEncrypted = getDecrypted(matrixHelper, matrixValues, key, wordEncrypted);
+            
+            Console.WriteLine();
+            Console.WriteLine(wordDecryptedFromEncrypted);
+
+            Console.ReadKey();
         }
     }
 }

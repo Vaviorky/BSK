@@ -172,6 +172,9 @@ namespace Zad2b
 
             int[] keyTable = new int[wordKey.Length];
 
+
+
+
             int keyTableCounter = 1;
             foreach (char c in alpbabetList)
             {
