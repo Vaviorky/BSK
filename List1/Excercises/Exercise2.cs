@@ -1,58 +1,73 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace List1.Excercises
 {
-    internal class Exercise2
+    internal static class Exercise2
     {
         public static void Encrypt()
         {
             Console.Clear();
             ConsoleOutput.PutInitText();
-            Console.WriteLine("Zadanie 1 - Przestawienia macierzowe");
+            Console.WriteLine("Zadanie 2a - Przestawienia macierzowe");
             Console.WriteLine();
 
             Console.Write("Podaj ciąg znaków do szyfrowania: ");
             var text = Console.ReadLine();
             Console.Write("Podaj klucz (wart. liczbowa): ");
             var keyinput = Console.ReadLine();
-            var key = new List<int>();
             if (keyinput != null)
-                foreach (var ki in keyinput)
-                {
-                    int number;
-                    var isNumber = int.TryParse(ki.ToString(), out number);
-                    if (isNumber)
-                        key.Add(number);
-                }
-
-            Console.Write("Ciąg zaszyfrowany: ");
-            for (var i = 0; i < key.Count; i++)
             {
-                foreach (var k in key)
-                {
+                var key = new int[keyinput.Length];
+                for (var i = 0; i < keyinput.Length; i++)
+                    key[i] = int.Parse(keyinput[i].ToString());
 
-                    if (i + 1 == key.Count)
-                    {
-                        if (text != null && text.Length % key.Count >= k)
-                        {
-                            var x = (text.Length % key.Count);
-                            Console.Write(text[(k - 1) + key.Count * i]);
 
-                        }
-                    }
-                    else
-                    {
-                        if (text != null) Console.Write(text[(k - 1) + key.Count * i]);
-                    }
-                }
+                var output = "";
 
+                for (var i = 0; i < text.Length; i += keyinput.Length)
+                for (var j = 0; j < keyinput.Length; j++)
+                    if (i + key[j] - 1 < text.Length)
+                        output += text[i + key[j] - 1];
+
+                Console.Write("Ciąg zaszyfrowany: " + output);
             }
+
             Console.ReadKey();
         }
 
         public static void Decrypt()
         {
+            Console.Clear();
+            ConsoleOutput.PutInitText();
+            Console.WriteLine("Zadanie 2a - Przestawienia macierzowe");
+            Console.WriteLine();
+
+            Console.Write("Podaj ciąg znaków do odszyfrowania: ");
+            var text = Console.ReadLine();
+            Console.Write("Podaj klucz (wart. liczbowa): ");
+            var keyinput = Console.ReadLine();
+            if (keyinput != null)
+            {
+                var key = new int[keyinput.Length];
+                for (var i = 0; i < keyinput.Length; i++)
+                    key[i] = int.Parse(keyinput[i].ToString());
+
+                if (text != null)
+                {
+                    var output = new char[text.Length];
+                    var k = 0;
+
+                    for (var i = 0; i < text.Length; i += keyinput.Length)
+                    for (var j = 0; j < keyinput.Length; j++)
+                        if (i + key[j] - 1 < text.Length)
+                            output[i + key[j] - 1] = text[k++];
+
+
+                    Console.Write("Ciąg odszyfrowany: " + new string(output));
+                }
+            }
+
+            Console.ReadKey();
         }
     }
 }
