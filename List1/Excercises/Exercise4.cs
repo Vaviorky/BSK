@@ -60,7 +60,8 @@ namespace List1.Excercises
             for (int i = 0; i < text.Length; i++)
             {
                 znak = text[i] - 65;
-                znak = ((znak + n - k0) * fik) % n;
+                //znak = ((znak + n - k0) * fik) % n;
+                znak = ((znak + (n - k0)) * ModuloPower(k1, fi - 1, n))%n;
                 znak += 65;
                 output += (char)znak;
             }
@@ -76,6 +77,32 @@ namespace List1.Excercises
             if (k % 2 == 0)
                 return Power(n, k / 2) * Power(n, k / 2);
             return n * Power(n, k / 2) * Power(n, k / 2);
+        }
+
+        private static int ModuloPower(int x, int power, int modulo)
+        {
+            int suma = 1;
+            int temp = 0;
+            var table = Convert.ToString(power, 2);
+            int multiplier = 1;
+            bool tempIsSet = false;
+
+            for (int i = table.Length - 1; i >= 0; i--)
+            {
+                if (tempIsSet)
+                {
+                    temp = (temp * temp) % modulo;
+                }
+                else
+                {
+                    temp = (int)Math.Pow(x, multiplier);
+                    tempIsSet = true;
+                }
+                multiplier *= 2;
+                if (table[i] == '1') suma = suma * temp;
+            }
+
+            return suma % modulo;
         }
     }
 }
