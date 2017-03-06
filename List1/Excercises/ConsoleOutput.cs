@@ -34,9 +34,10 @@ namespace List1.Excercises
             Console.WriteLine("Wybierz opcję:");
             Console.WriteLine("1. Zadanie 1");
             Console.WriteLine("2. Zadanie 2");
-            Console.WriteLine("3. Zadanie 3");
+            Console.WriteLine("3. Zadanie 3 - 2b");
             Console.WriteLine("4. Zadanie 4");
             Console.WriteLine("5. Zadanie 5");
+            Console.WriteLine("6. Zadanie 3 - 2c");
             Console.WriteLine("0. Wyjście");
         }
     }

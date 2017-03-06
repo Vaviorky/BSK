@@ -60,8 +60,8 @@ namespace List1.Excercises
             for (int i = 0; i < text.Length; i++)
             {
                 znak = text[i] - 65;
-                //znak = ((znak + n - k0) * fik) % n;
-                znak = ((znak + (n - k0)) * ModuloPower(k1, fi - 1, n))%n;
+                znak = ((znak + n - k0) * fik) % n;
+                //znak = ((znak + (n - k0)) * ModuloPower(k1, fi - 1, n))%n;
                 znak += 65;
                 output += (char)znak;
             }

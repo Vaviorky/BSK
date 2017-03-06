@@ -65,6 +65,25 @@ namespace List1
                                 break;
                         }
                         break;
+
+                    case '6':
+                        ConsoleOutput.PutInitText();
+                        Console.WriteLine("Zadanie 3 - Przestawienia macierzowe c");
+                        ConsoleOutput.PutCryptoDecryptoText();
+                        var choice6 = Console.ReadKey();
+                        switch (choice6.KeyChar)
+                        {
+                            case '1':
+                                Exercise6.Encrypt();
+                                break;
+                            case '2':
+                                Exercise6.Decrypt();
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+
                     case '4':
                         ConsoleOutput.PutInitText();
                         Console.WriteLine("Zadanie 4 - Szyfrowanie cezara");
