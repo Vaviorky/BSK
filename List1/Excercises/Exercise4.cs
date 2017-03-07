@@ -27,7 +27,7 @@ namespace List1.Excercises
 
             foreach (char cc in text)
             {
-                Console.Write(getCharEncodeCaesar(cc, Alfabet, getShift(cc, Alfabet), k0, k1));
+                output += getCharEncodeCaesar(cc, Alfabet, getShift(cc, Alfabet), k0, k1);
             }
             Console.WriteLine();
 
@@ -58,7 +58,7 @@ namespace List1.Excercises
 
             foreach (char cc in text)
             {
-                Console.Write(getCharDecodeCaesar(cc, Alfabet, k0, k1, fi));
+                output += getCharDecodeCaesar(cc, Alfabet, k0, k1, fi);
             }
             Console.WriteLine();
 
