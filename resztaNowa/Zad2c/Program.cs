@@ -170,7 +170,7 @@ namespace Zad2c
         static void Main(string[] args)
         {
             string keyToProceed = "CONVENIENCE";
-            keyToProceed = "HASLO";
+            keyToProceed = "ALA";
             //keyToProceed = keyToProceed.ToUpper();
             //Console.WriteLine(keyToProceed);
             int[] key = getKey(keyToProceed);
@@ -189,7 +189,9 @@ namespace Zad2c
                 forLoopCounter++;
             }
 
-            string word = "PROCESOR";
+            string word = "alamakotaidwapsy";
+
+            int div = word.Length / key.Length;
             //word = "HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION";
 
             int[,] matrixHelper = new int[key.Length,key.Length];

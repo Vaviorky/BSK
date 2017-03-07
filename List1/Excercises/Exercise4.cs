@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace List1.Excercises
 {
@@ -20,16 +21,15 @@ namespace List1.Excercises
 
             text = text.ToUpper();
 
-            var output = "";
-            int znak;
-            var n = 26;
+            char[] Alfabet = getAlfabetTable();
 
-            for (int i = 0; i < text.Length; i++)
+            var output = "";
+
+            foreach (char cc in text)
             {
-                znak = text[i] - 65;
-                znak = ((znak * k1 + k0) % n) + 65;
-                output += (char)znak;
+                Console.Write(getCharEncodeCaesar(cc, Alfabet, getShift(cc, Alfabet), k0, k1));
             }
+            Console.WriteLine();
 
             Console.WriteLine("Ciąg zaszyfrowany: " + output);
             Console.ReadKey();
@@ -50,21 +50,17 @@ namespace List1.Excercises
             var k1 = int.Parse(Console.ReadLine());
 
             text = text.ToUpper();
+            char[] Alfabet = getAlfabetTable();
 
             var output = "";
             const int n = 26;
             const int fi = 12;
-            var fik = Power(k1, fi - 1);
-            long znak;
 
-            for (int i = 0; i < text.Length; i++)
+            foreach (char cc in text)
             {
-                znak = text[i] - 65;
-                //znak = ((znak + n - k0) * fik) % n;
-                znak = ((znak + (n - k0))%n * ModuloPower(k1, fi - 1, n))%n;
-                znak += 65;
-                output += (char)znak;
+                Console.Write(getCharDecodeCaesar(cc, Alfabet, k0, k1, fi));
             }
+            Console.WriteLine();
 
             Console.WriteLine("Ciąg odszyfrowany: " + output);
             Console.ReadKey();
@@ -103,6 +99,85 @@ namespace List1.Excercises
             }
 
             return suma % modulo;
+        }
+
+        public static char[] getAlfabetTable()
+        {
+            List<char> alpbabetList = new List<char>();
+
+            for (int i = 65; i < 91; i++)
+            {
+                alpbabetList.Add((char)i);
+            }
+
+            char[] alfabet = alpbabetList.ToArray();
+
+            return alfabet;
+        }
+
+        public static int getShift(char c, char[] alfabet)
+        {
+            for (int i = 0; i < alfabet.Length; i++)
+            {
+                if (alfabet[i] == c) return i;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        public static char getCharEncodeCaesar(char c, char[] alfabet, int a, int k0, int k1)
+        {
+            int charShift = ((a * k1) + k0) % alfabet.Length;
+            return alfabet[charShift];
+        }
+
+        public static char getCharDecodeCaesar(char c, char[] alfabet, int k0, int k1, int fi)
+        {
+            int n = alfabet.Length;
+
+            int parA = (getShift(c, alfabet) + (n - k0)) % n;
+            if (parA < 0) parA += n;
+
+            int tmp = (parA * ModuloPower(k1, fi - 1, n)) % n;
+
+            return alfabet[tmp];
+        }
+
+        public static int getPositionAlphabet(char c, char[] alphabet)
+        {
+            int counter = 0;
+            foreach (char VARIABLE in alphabet)
+            {
+                if (VARIABLE == c) return counter;
+                counter++;
+            }
+            throw new NotImplementedException();
+        }
+
+        public static int[] getKeyTable(string input, char[] alphabet)
+        {
+            int[] table = new int[input.Length];
+
+            int counter = 0;
+            foreach (char VARIABLE in input)
+            {
+                table[counter++] = getPositionAlphabet(VARIABLE, alphabet);
+            }
+
+            return table;
+        }
+
+        public static long getPower(int n, int k)
+        {
+            if (k == 0)
+            {
+                return 1;
+            }
+            if (k % 2 == 0)
+            {
+                return getPower(n, k / 2) * getPower(n, k / 2);
+            }
+            return n * getPower(n, k / 2) * getPower(n, k / 2);
         }
     }
 }

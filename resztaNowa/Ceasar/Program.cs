@@ -32,45 +32,49 @@ namespace Ceasar
             throw new NotImplementedException();
         }
 
-        public static char getCharEncodeCaesar(char c, int shift, char[] alfabet)
+        public static char getCharEncodeCaesar(char c, char[] alfabet, int a, int k0, int k1)
         {
-            return alfabet[(getShift(c, alfabet) + shift) % alfabet.Length];
+            int charShift = ((a * k1) + k0) % alfabet.Length;
+            return alfabet[charShift];
         }
 
-        public static char getCharDecodeCaesar(char c, int shift, char[] alfabet)
+        public static char getCharDecodeCaesar(char c, char[] alfabet, int k0, int k1, int fi)
         {
-            int x = (getShift(c, alfabet) - shift) % alfabet.Length;
+            int n = alfabet.Length;
 
-            if (x < 0) x = x + alfabet.Length;
+            int parA = (getShift(c,alfabet) + (n - k0)) % n;
+            if (parA < 0) parA += n;
 
-            return alfabet[x];
+            int tmp = (parA * ModuloPower(k1, fi - 1, n)) % n;
+
+            return alfabet[tmp];
         }
 
-        public static string getStringEncodeCaesar(string input, int shift, char[] alfabet)
-        {
-            input = input.ToUpper();
-            string output = "";
+        //public static string getStringEncodeCaesar(string input, int shift, char[] alfabet)
+        //{
+        //    input = input.ToUpper();
+        //    string output = "";
 
-            foreach (char c in input)
-            {
-                output += getCharEncodeCaesar(c, shift, alfabet);
-            }
+        //    foreach (char c in input)
+        //    {
+        //        output += getCharEncodeCaesar(c, shift, alfabet);
+        //    }
 
-            return output;
-        }
+        //    return output;
+        //}
 
-        public static string getStringDecodeCaesar(string input, int shift, char[] alfabet)
-        {
-            input = input.ToUpper();
-            string output = "";
+        //public static string getStringDecodeCaesar(string input, int shift, char[] alfabet)
+        //{
+        //    input = input.ToUpper();
+        //    string output = "";
 
-            foreach (char c in input)
-            {
-                output += getCharDecodeCaesar(c, shift, alfabet);
-            }
+        //    foreach (char c in input)
+        //    {
+        //        output += getCharDecodeCaesar(c, shift, alfabet);
+        //    }
 
-            return output;
-        }
+        //    return output;
+        //}
 
         //Vigenere
 
@@ -117,17 +121,56 @@ namespace Ceasar
 
             string word = "ABC";
 
-            int a = 1;
+            int a = getShift('A',Alfabet);
 
-            int k0 = 70;
-            int k1 = 7;
+            int n = Alfabet.Length;
 
-            int c = (a * k0 + k1) % Alfabet.Length;
-            Console.WriteLine(c);
+            int k0 = 103;
+            int k1 = 123;
+            int fi = 12;
 
-            a = (int)(((c - k1) * getPower(k0, 11))%Alfabet.Length);
+            //int c = ((a * k1) + k0) % Alfabet.Length;
+            //Console.WriteLine(c);
 
-            Console.WriteLine(a);
+            string input = "DUPA";
+            string output = "EPYZ";
+
+            foreach (char cc in input)
+            {
+                Console.Write(getCharEncodeCaesar(cc,Alfabet,getShift(cc,Alfabet),k0,k1));
+            }
+            Console.WriteLine();
+
+            foreach (char cc in output)
+            {
+                Console.Write(getCharDecodeCaesar(cc,Alfabet,k0,k1,fi));
+            }
+            Console.WriteLine();
+
+            char c = getCharEncodeCaesar('A', Alfabet, a, k0, k1);
+
+            char tmp = getCharDecodeCaesar('Z', Alfabet, k0, k1, fi);
+
+            //Console.WriteLine(c);
+            //Console.WriteLine(tmp);
+
+            //int parA = (c + (n - k0)) % n;
+            //if (parA < 0) parA += n;
+
+            //int tmp = (parA * ModuloPower(k1, fi - 1, n)) % n;
+            //Console.WriteLine(tmp);
+
+            //Console.WriteLine(c);
+            //Console.WriteLine(tmp);
+
+            //Console.WriteLine(getShift('C',Alfabet));
+
+            //int c = (a * k0 + k1) % Alfabet.Length;
+            //Console.WriteLine(c);
+
+            //a = (int)(((c - k1) * getPower(k0, 11))%Alfabet.Length);
+
+            //Console.WriteLine(a);
 
             //string wordEncoded = "";
             //string wordDecoded = "";
@@ -139,6 +182,32 @@ namespace Ceasar
 
             //wordDecoded = getStringDecodeCaesar(wordEncoded, 2, Alfabet);
             //Console.WriteLine(wordEncoded + " dec -> " + wordDecoded);
+        }
+
+        private static int ModuloPower(int x, int power, int modulo)
+        {
+            int suma = 1;
+            int temp = 0;
+            var table = Convert.ToString(power, 2);
+            int multiplier = 1;
+            bool tempIsSet = false;
+
+            for (int i = table.Length - 1; i >= 0; i--)
+            {
+                if (tempIsSet)
+                {
+                    temp = (temp * temp) % modulo;
+                }
+                else
+                {
+                    temp = (int)Math.Pow(x, multiplier);
+                    tempIsSet = true;
+                }
+                multiplier *= 2;
+                if (table[i] == '1') suma = suma * temp;
+            }
+
+            return suma % modulo;
         }
     }
 }
