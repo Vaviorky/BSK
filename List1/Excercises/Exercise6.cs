@@ -8,6 +8,8 @@ namespace List1.Excercises
 {
     class Exercise6
     {
+        public static int div;
+
         public static int[] getKey(string word)
         {
             int[] tablica = new int[word.Length];
@@ -68,9 +70,8 @@ namespace List1.Excercises
                     if (counter < length)
                     {
                         matrixHelper[row, col] = 1;
-                        if (row == (key[col] - 1))
+                        if (row % key.Length == (key[col] - 1))
                         {
-                            //Console.WriteLine("Break {0}",key[row]);
                             counter++;
                             break;
                         }
@@ -85,7 +86,7 @@ namespace List1.Excercises
             int counter = 0;
             for (int row = 0; row < matrixHelper.GetLength(0); row++)
             {
-                for (int col = 0; col < matrixHelper.GetLength(0); col++)
+                for (int col = 0; col < matrixHelper.GetLength(1); col++)
                 {
                     if (matrixHelper[row, col] == 1)
                     {
@@ -99,9 +100,9 @@ namespace List1.Excercises
         {
             for (int row = 0; row < matrixValues.GetLength(0); row++)
             {
-                for (int col = 0; col < matrixValues.GetLength(0); col++)
+                for (int col = 0; col < matrixValues.GetLength(1); col++)
                 {
-                    matrixValues[col, row] = '-';
+                    matrixValues[row, col] = '-';
                 }
             }
         }
@@ -110,7 +111,7 @@ namespace List1.Excercises
         {
             for (int row = 0; row < matrixValues.GetLength(0); row++)
             {
-                for (int col = 0; col < matrixValues.GetLength(0); col++)
+                for (int col = 0; col < matrixValues.GetLength(1); col++)
                 {
                     Console.Write(matrixValues[row, col] + " ");
                 }
@@ -192,8 +193,10 @@ namespace List1.Excercises
 
             string word = plaintext;
 
-            int[,] matrixHelper = new int[key.Length, key.Length];
-            char[,] matrixValues = new char[key.Length, key.Length];
+            div = word.Length / key.Length;
+
+            int[,] matrixHelper = new int[div * key.Length, key.Length];
+            char[,] matrixValues = new char[div * key.Length, key.Length];
 
             initTableHelper(matrixHelper);
             populateTableHelper(matrixHelper, word.Length, key);
@@ -233,8 +236,10 @@ namespace List1.Excercises
                 forLoopCounter++;
             }
 
-            int[,] matrixHelper = new int[key.Length, key.Length];
-            char[,] matrixValues = new char[key.Length, key.Length];
+            div = plaintext.Length / key.Length;
+
+            int[,] matrixHelper = new int[div * key.Length, key.Length];
+            char[,] matrixValues = new char[div * key.Length, key.Length];
             initTableHelper(matrixHelper);
             populateTableHelper(matrixHelper, wordEncrypted.Length, key);
             initTableValues(matrixValues);

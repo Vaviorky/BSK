@@ -9,6 +9,8 @@ namespace Zad2c
 {
     class Program
     {
+        public static int div;
+
         public static int[] getKey(string word)
         {
             int[] tablica = new int[word.Length];
@@ -69,9 +71,8 @@ namespace Zad2c
                     if (counter < length)
                     {
                         matrixHelper[row, col] = 1;
-                        if (row == (key[col] - 1))
+                        if (row%key.Length == (key[col] - 1))
                         {
-                            //Console.WriteLine("Break {0}",key[row]);
                             counter++;
                             break;
                         }
@@ -86,7 +87,7 @@ namespace Zad2c
             int counter = 0;
             for (int row = 0; row < matrixHelper.GetLength(0); row++)
             {
-                for (int col = 0; col < matrixHelper.GetLength(0); col++)
+                for (int col = 0; col < matrixHelper.GetLength(1); col++)
                 {
                     if (matrixHelper[row, col] == 1)
                     {
@@ -100,9 +101,9 @@ namespace Zad2c
         {
             for (int row = 0; row < matrixValues.GetLength(0); row++)
             {
-                for (int col = 0; col < matrixValues.GetLength(0); col++)
+                for (int col = 0; col < matrixValues.GetLength(1); col++)
                 {
-                    matrixValues[col, row] = '-';
+                    matrixValues[row, col] = '-';
                 }
             }
         }
@@ -111,7 +112,7 @@ namespace Zad2c
         {
             for (int row = 0; row < matrixValues.GetLength(0); row++)
             {
-                for (int col = 0; col < matrixValues.GetLength(0); col++)
+                for (int col = 0; col < matrixValues.GetLength(1); col++)
                 {
                     Console.Write(matrixValues[row,col]+" ");
                 }
@@ -175,10 +176,10 @@ namespace Zad2c
             //Console.WriteLine(keyToProceed);
             int[] key = getKey(keyToProceed);
 
-            foreach (var VARIABLE in key)
-            {
-                Console.WriteLine(VARIABLE);
-            }
+            //foreach (var VARIABLE in key)
+            //{
+            //    Console.WriteLine(VARIABLE);
+            //}
 
             int[] keyInverse = new int[key.Length];
 
@@ -191,30 +192,31 @@ namespace Zad2c
 
             string word = "alamakotaidwapsy";
 
-            int div = word.Length / key.Length;
-            //word = "HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION";
+            div = word.Length / key.Length;
 
-            int[,] matrixHelper = new int[key.Length,key.Length];
-            char[,] matrixValues = new char[key.Length,key.Length];
+            int[,] matrixHelper = new int[div*key.Length,key.Length];
+            char[,] matrixValues = new char[div*key.Length,key.Length];
 
             initTableHelper(matrixHelper);
             printTableHelper(matrixHelper);
 
-            Console.WriteLine();
+            //Console.WriteLine();
+
+            Console.Clear();
 
             populateTableHelper(matrixHelper,word.Length, key);
             printTableHelper(matrixHelper);
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
             initTableValues(matrixValues);
-            printTableValues(matrixValues);
+            //printTableValues(matrixValues);
 
-            Console.WriteLine();
+            //Console.WriteLine();
             populateTableValues(matrixHelper,matrixValues,word);
             printTableValues(matrixValues);
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
             string wordEncrypted = getEncrypted(matrixHelper, matrixValues, keyInverse);
             Console.WriteLine(wordEncrypted);
@@ -223,8 +225,8 @@ namespace Zad2c
 
             //decrypt
             //zmiana slowa
-            wordEncrypted = "MYADRNZE";
-            keyToProceed = "LAPTOP";
+            wordEncrypted = "alaotdapmiyakaws";
+            keyToProceed = "ALA";
 
             key = getKey(keyToProceed);
 
@@ -242,18 +244,21 @@ namespace Zad2c
                 forLoopCounter++;
             }
 
-            matrixHelper = new int[key.Length, key.Length];
-            matrixValues = new char[key.Length, key.Length];
+            div = word.Length / key.Length;
+            Console.WriteLine(div);
+
+            matrixHelper = new int[div * key.Length, key.Length];
+            matrixValues = new char[div * key.Length, key.Length];
 
 
-            
+
 
             initTableHelper(matrixHelper);
-            populateTableHelper(matrixHelper,wordEncrypted.Length,key);
+            populateTableHelper(matrixHelper, wordEncrypted.Length, key);
 
 
             initTableValues(matrixValues);
-            populateTableValuesFromEncrypted(matrixHelper, matrixValues,wordEncrypted,keyInverse);
+            populateTableValuesFromEncrypted(matrixHelper, matrixValues, wordEncrypted, keyInverse);
 
             Console.WriteLine();
 

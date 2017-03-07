@@ -50,34 +50,6 @@ namespace Ceasar
             return alfabet[tmp];
         }
 
-        //public static string getStringEncodeCaesar(string input, int shift, char[] alfabet)
-        //{
-        //    input = input.ToUpper();
-        //    string output = "";
-
-        //    foreach (char c in input)
-        //    {
-        //        output += getCharEncodeCaesar(c, shift, alfabet);
-        //    }
-
-        //    return output;
-        //}
-
-        //public static string getStringDecodeCaesar(string input, int shift, char[] alfabet)
-        //{
-        //    input = input.ToUpper();
-        //    string output = "";
-
-        //    foreach (char c in input)
-        //    {
-        //        output += getCharDecodeCaesar(c, shift, alfabet);
-        //    }
-
-        //    return output;
-        //}
-
-        //Vigenere
-
         public static int getPositionAlphabet(char c, char[] alphabet)
         {
             int counter = 0;
