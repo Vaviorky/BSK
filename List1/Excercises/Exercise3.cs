@@ -55,30 +55,6 @@ namespace List1.Excercises
             }
         }
 
-        public static void printHelperTable(int[,] matrix)
-        {
-            for (int row = 0; row < matrix.GetLength(0); row++)
-            {
-                for (int col = 0; col < matrix.GetLength(1); col++)
-                {
-                    Console.Write(matrix[row, col] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public static void printValuesTable(char[,] matrix)
-        {
-            for (int row = 0; row < matrix.GetLength(0); row++)
-            {
-                for (int col = 0; col < matrix.GetLength(1); col++)
-                {
-                    Console.Write(matrix[row, col] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
         public static string getEncrypted(int[,] helper, char[,] values, List<int> key)
         {
             string data = "";
@@ -164,15 +140,10 @@ namespace List1.Excercises
             Console.Write("Podaj klucz: ");
             var keyInput = Console.ReadLine();
 
-
-
-            //trash
             List<int> key = new List<int>();
 
             string word = plaintext;
             string wordKey = keyInput;
-            //wordKey = "AMD";
-            //word = "CONVENIENCE";
             string wordEncrypted = "";
 
             List<char> alpbabetList = new List<char>();
@@ -212,16 +183,9 @@ namespace List1.Excercises
             int[,] matrixHelper = new int[row, col];
             char[,] matrixValues = new char[row, col];
 
-
-            
-
             initHelperTable(matrixHelper, word.Length);
-
             initValuesTable(matrixValues);
-
-           
             populateValuesTable(matrixHelper, matrixValues, word);
-
 
             counter = 0;
             wordEncrypted = getEncrypted(matrixHelper, matrixValues, key);
