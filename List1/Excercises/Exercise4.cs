@@ -42,7 +42,7 @@ namespace List1.Excercises
             Console.WriteLine("Zadanie 4 - Szyfrowanie Cezara");
             Console.WriteLine();
 
-            Console.Write("Podaj ciąg znaków do szyfrowania: ");
+            Console.Write("Podaj ciąg znaków do deszyfrowania: ");
             var text = Console.ReadLine();
             Console.Write("Podaj k0: ");
             var k0 = int.Parse(Console.ReadLine());
