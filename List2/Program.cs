@@ -1,5 +1,5 @@
 ﻿using System;
-using List2.Excercises;
+using List2.Exercises;
 
 namespace List2
 {

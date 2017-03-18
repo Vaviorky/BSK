@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace List2.Excercises
+namespace List2.Exercises
 {
-    public static class Exercise1
+    public static class Exercise3
     {
         public static void Encrypt()
         {
             Console.Clear();
             ConsoleOutput.PutInitText();
-            Console.WriteLine("Zadanie 1 - LFSR - Szyfrowanie");
+            Console.WriteLine("Zadanie 3 - Ciphertext Autokey - Szyfrowanie");
             Console.WriteLine();
 
 
@@ -18,7 +18,7 @@ namespace List2.Excercises
         {
             Console.Clear();
             ConsoleOutput.PutInitText();
-            Console.WriteLine("Zadanie 1 - LFSR - Deszyfrowanie");
+            Console.WriteLine("Zadanie 3 - Ciphertext Autokey - Deszyfrowanie");
             Console.WriteLine();
 
 

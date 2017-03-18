@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace List2.Excercises
+namespace List2.Exercises
 {
     class ConsoleOutput
     {

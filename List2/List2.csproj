@@ -43,15 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Excercises\ConsoleOutput.cs" />
-    <Compile Include="Excercises\Exercise1.cs" />
-    <Compile Include="Excercises\Exercise2.cs" />
-    <Compile Include="Excercises\Exercise3.cs" />
+    <Compile Include="Exercises\BinaryFile.cs" />
+    <Compile Include="Exercises\ConsoleOutput.cs" />
+    <Compile Include="Exercises\Exercise1.cs" />
+    <Compile Include="Exercises\Exercise2.cs" />
+    <Compile Include="Exercises\Exercise3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="TestFiles\test.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\test2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\test3.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
