@@ -11,7 +11,6 @@ namespace List2.Exercises
             try
             {
                 var path = Path.Combine(Environment.CurrentDirectory, @"TestFiles\", fileName);
-                Console.ReadKey();
                 var file = File.ReadAllBytes(path);
                 return file;
             }
