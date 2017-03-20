@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exercises\BinaryFile.cs" />
+    <Compile Include="Exercises\ClassZad2\LFSR.cs" />
+    <Compile Include="Exercises\ClassZad2\LFSR_2_File.cs" />
     <Compile Include="Exercises\ConsoleOutput.cs" />
     <Compile Include="Exercises\Exercise1.cs" />
     <Compile Include="Exercises\Exercise2.cs" />
