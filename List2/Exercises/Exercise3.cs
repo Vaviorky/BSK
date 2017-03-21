@@ -7,16 +7,30 @@ namespace List2.Exercises
     {
         public static void Encrypt()
         {
+
+            string dictWord;
+            string seed;
+
+            string input, output;
             Console.Clear();
             ConsoleOutput.PutInitText();
             Console.WriteLine("Zadanie 3 - Ciphertext Autokey - Szyfrowanie");
             Console.WriteLine();
 
-            string dict = "100101";
-            string seed = "110010";
-            LFSR3 lfsr = new LFSR3(dict,seed);
+            Console.Write("Podaj wielomian np. 1001: ");
+            dictWord = Console.ReadLine();
 
-            LFSR_3_File lfsr3File = new LFSR_3_File(lfsr,"TestFiles/prep0.bin","TestFiles/prepOUT.bin");
+            Console.Write("Podaj seed np. 1010: ");
+            seed = Console.ReadLine();
+
+            Console.Write("Podaj input file: ");
+            input = Console.ReadLine();
+
+            Console.Write("Podaj output file: ");
+            output = Console.ReadLine();
+
+            LFSR3 lfsr = new LFSR3(dictWord, seed);
+            LFSR_3_File lfsr3File = new LFSR_3_File(lfsr,"TestFiles/"+input, "TestFiles/" + output);
 
             lfsr3File.Encode();
 

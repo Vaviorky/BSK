@@ -54,7 +54,7 @@ namespace List2.Exercises.ClassZad2
                 tmp = lfsr.getLFSR_Value();
                 Xored = lfsr.getXOR(tmp, b);
                 lfsr.getShiftedSeed(Xored);
-                Console.Write(Xored);
+                //Console.Write(Xored);
                 outputBits.AddLast(Xored);
             }
 
