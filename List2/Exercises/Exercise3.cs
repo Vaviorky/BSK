@@ -1,4 +1,5 @@
 ﻿using System;
+using List2.Exercises.ClassZad2;
 
 namespace List2.Exercises
 {
@@ -11,6 +12,15 @@ namespace List2.Exercises
             Console.WriteLine("Zadanie 3 - Ciphertext Autokey - Szyfrowanie");
             Console.WriteLine();
 
+            string dict = "100101";
+            string seed = "110010";
+            LFSR3 lfsr = new LFSR3(dict,seed);
+
+            LFSR_3_File lfsr3File = new LFSR_3_File(lfsr,"TestFiles/prep0.bin","TestFiles/prepOUT.bin");
+
+            lfsr3File.Encode();
+
+            Console.ReadKey();
 
         }
 
