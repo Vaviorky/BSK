@@ -34,7 +34,7 @@ namespace List2.Exercises
 
             lfsr3File.Encode();
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
         }
 
@@ -45,7 +45,33 @@ namespace List2.Exercises
             Console.WriteLine("Zadanie 3 - Ciphertext Autokey - Deszyfrowanie");
             Console.WriteLine();
 
+            string dictWord;
+            string seed;
 
+            string input, output;
+            Console.Clear();
+            ConsoleOutput.PutInitText();
+            Console.WriteLine("Zadanie 3 - Ciphertext Autokey - Szyfrowanie");
+            Console.WriteLine();
+
+            Console.Write("Podaj wielomian np. 1001: ");
+            dictWord = Console.ReadLine();
+
+            Console.Write("Podaj seed np. 1010: ");
+            seed = Console.ReadLine();
+
+            Console.Write("Podaj input file: ");
+            input = Console.ReadLine();
+
+            Console.Write("Podaj output file: ");
+            output = Console.ReadLine();
+
+            LFSR3 lfsr = new LFSR3(dictWord, seed);
+            LFSR_3_File lfsr3File = new LFSR_3_File(lfsr, "TestFiles/" + input, "TestFiles/" + output);
+
+            lfsr3File.Decode();
+
+            //Console.ReadKey();
         }
     }
 }

@@ -85,7 +85,12 @@ namespace List2.Exercises.ClassZad2
                 newSedd[i + 1] = seed[i];
             }
             newSedd[0] = XOR;
-
+            ///Console.WriteLine();
+            //for (int i = 0; i < newSedd.Length; i++)
+            //{
+            //    Console.Write(newSedd[i]);
+            //}
+            //Console.WriteLine();
             return newSedd;
         }
     }

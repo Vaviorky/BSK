@@ -81,6 +81,63 @@ namespace List2.Exercises.ClassZad2
 
         }
 
+        public void Decode()
+        {
+            fsInput = new FileStream(input, FileMode.Open);
+            fsOutput = new FileStream(output, FileMode.Create, FileAccess.Write);
+            br = new BinaryReader(fsInput);
+            wr = new BinaryWriter(fsOutput);
+
+            //read
+            LinkedList<Byte> inputBits = new LinkedList<byte>();
+            LinkedList<Byte> outputBits = new LinkedList<byte>();
+            byte[] tempd = br.ReadBytes((int)fsInput.Length);
+            foreach (var VARIABLE in tempd)
+            {
+                string data = Convert.ToString(VARIABLE, 2).PadLeft(8, '0');
+
+                foreach (char c in data)
+                {
+                    if (c == '1') inputBits.AddLast(1);
+                    else inputBits.AddLast(0);
+                }
+            }
+            br.Close();
+            fsInput.Close();
+
+            byte temp;
+            byte Xored;
+
+            foreach (var b in inputBits)
+            {
+                temp = lfsr.getLFSR_Value();
+                Xored = lfsr.getXOR(temp, b);
+                lfsr.getShiftedSeed(b);
+                //Console.Write(Xored);
+                outputBits.AddLast(Xored);
+            }
+
+            //zapis
+            byte[] OneByte = new byte[8];
+            int count = 0;
+            List<byte> byteToWriteList = new List<byte>();
+
+            foreach (byte b in outputBits)
+            {
+                OneByte[count++] = b;
+                if (count == 8)
+                {
+                    byte byteTowrite = BinaryToByte(OneByte);
+                    byteToWriteList.Add(byteTowrite);
+                    count = 0;
+                }
+            }
+
+            wr.Write(byteToWriteList.ToArray());
+            wr.Close();
+            fsOutput.Close();
+        }
+
         private static byte BinaryToByte(byte[] tab)
         {
             byte value = 0;
